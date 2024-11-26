@@ -25,7 +25,7 @@ class AllShins:
     def add_shina(self, shina):
         print(self.need_season, shina.season)
 
-        if shina.available < 4:
+        if shina.available < 4 and shina.store == 'IRKUTSK':
             return
         if not shina.season or not self.need_season:
             return
@@ -46,15 +46,15 @@ class AllShins:
     def create_res(self):
 
         if "IRKUTSK" in self.result_dict:
-            self.result_return_str += self.result_dict['IRKUTSK']
+            self.result_return_str += f"{self.result_dict['IRKUTSK']}\n"
 
         for i in range(40):
             if f'STORE_{i}' in self.result_dict:
-                if len(self.result_return_str + self.result_dict[f'STORE_{i}']) < 3500:
-                    self.result_return_str += self.result_dict[f'STORE_{i}']
+                if len(self.result_return_str + "\n" + self.result_dict[f'STORE_{i}']) < 3500:
+                    self.result_return_str += f"{self.result_dict[f'STORE_{i}']}\n"
                 else:
                     self.result_return_list.append(self.result_return_str)
-                    self.result_return_str = self.result_dict[f'STORE_{i}']
+                    self.result_return_str = f"{self.result_dict[f'STORE_{i}']}\n"
         self.result_return_list.append(self.result_return_str)
         return self.result_return_list
 
