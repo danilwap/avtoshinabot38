@@ -23,8 +23,6 @@ class AllShins:
         self.need_season = str(need_season)
 
     def add_shina(self, shina):
-        print(self.need_season, shina.season)
-
         if shina.available < 4 and shina.store == 'IRKUTSK':
             return
         if not shina.season or not self.need_season:
