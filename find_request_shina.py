@@ -23,8 +23,9 @@ class AllShins:
         self.need_season = str(need_season)
 
     def add_shina(self, shina):
-        if shina.available < 4 and shina.store == 'IRKUTSK':
-            return
+        # Фильтрует по тому, чтобы в наличие было больше 4
+        #if shina.available < 4 and shina.store == 'IRKUTSK':
+        #    return
         if not shina.season or not self.need_season:
             return
         if self.need_season in shina.season:
