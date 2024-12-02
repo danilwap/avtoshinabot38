@@ -4,10 +4,11 @@ from utils import get_end_data
 
 
 class Shina:
-    def __init__(self, name, price, available, season, store, stores):
+    def __init__(self, name, price, available, quantity, season, store, stores):
         self.name = name
         self.price = price
         self.available = available
+        self.quantity = quantity
         self.season = season
         self.store = store
         self.stores = stores
@@ -22,10 +23,10 @@ class AllShins:
         self.result_return_list = []
         self.need_season = str(need_season)
 
-    def add_shina(self, shina):
+    def add_shina(self, shina: Shina):
         # Фильтрует по тому, чтобы в наличие было больше 4
-        #if shina.available < 4 and shina.store == 'IRKUTSK':
-        #    return
+        if int(shina.quantity) < 4 and shina.store == 'IRKUTSK':
+            return
         if not shina.season or not self.need_season:
             return
         if self.need_season in shina.season:
@@ -73,7 +74,7 @@ def find_shina(weight=205, height=55, radius=16, season='Зимн'):
         if len(result_python) >= 1:
             for i in result_python:
                 result_dict.add_shina(
-                    Shina(name=i['NAME'], price=i['PRICE'], available=i['AVAILABLE'], store=i["STORE"],
+                    Shina(name=i['NAME'], price=i['PRICE'], available=i['AVAILABLE'], quantity=i['QUANTITY'], store=i["STORE"],
                           season=i["SEASON"],
                           stores=i['STORES']))
         result = result_dict()
